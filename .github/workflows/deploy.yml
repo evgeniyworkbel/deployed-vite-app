@@ -31,14 +31,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install package-manager
-        run: npm install -g pnpm@latest-10
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
           cache: "pnpm"
       - name: Install dependencies
-        run: npm ci
+        run: pnpm ci
       - name: Build
         run: npm run build
       - name: Setup Pages
